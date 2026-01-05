@@ -10,8 +10,12 @@ st.title("📊 Professional Beta Calculator")
 # 2. Sidebar for Inputs
 st.sidebar.header("Settings")
 ticker = st.sidebar.text_input("Stock Ticker (e.g., RELIANCE.NS)", "RELIANCE.NS").upper()
-benchmark = st.sidebar.selectbox("Benchmark", ["^GSPC", "^NSEI", "^IXIC"], index=0)
-
+benchmark = st.sidebar.selectbox(
+    "Select Benchmark", 
+    ["^GSPC", "^NSEI", "^BSESN", "^IXIC"], 
+    index=1,
+    help="^GSPC: S&P 500 (US), ^NSEI: NIFTY 50 (India), ^BSESN: SENSEX (India), ^IXIC: NASDAQ"
+)
 # Setting date defaults to avoid holiday errors
 col1, col2 = st.sidebar.columns(2)
 start_date = col1.date_input("Start Date", datetime.now() - timedelta(days=365*2))
@@ -55,3 +59,4 @@ if st.sidebar.button("Run Analysis"):
 # 5. Footer
 st.divider()
 st.caption("Data sourced from Yahoo Finance. Dates with no trading are automatically skipped.")
+
